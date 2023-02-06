@@ -1,0 +1,33 @@
+UniqueUserEmailChecker
+This Java program takes input from the user for username and email address and stores it in a HashMap.
+It checks if the username and email are already in use and if they are, it outputs the relevant message.
+If both the username and email are unique, it adds the entry to the HashMap and outputs a message saying so.
+The program stops when the user inputs "stop" for the username.
+
+Access Granted!
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class UniqueUserCheckerUpdated {
+    public static void main(String[] args) {
+        HashMap<String, String> users = new HashMap<>();
+        users.put("dummyUsername", "dummyEmail@example.com");
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a username: ");
+        String username = scanner.nextLine();
+
+        System.out.print("Enter an email address: ");
+        String email = scanner.nextLine();
+
+        if (!users.containsKey(username)) {
+            System.out.println("Incorrect username.");
+        } else if (!users.get(username).equals(email)) {
+            System.out.println("Incorrect email address.");
+        } else {
+            System.out.println("Access granted!");
+        }
+    }
+}
+
