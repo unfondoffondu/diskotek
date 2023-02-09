@@ -1,20 +1,33 @@
+//intellij wants to change this class to a record which is way more concise for holding only data. Almost too concise.
 public class DummyUser implements User{
-    private int RoleIDs;
-    private int roleID = 1; //hard coded
-    private Role r;
+    //private and final so the variables can't be changed
+    private final String username;
+    private final DummyRole[] roles;
+    private final String password;
 
-    DummyUser(Role r){
-        this.r = r;
+    //constructor
+    public DummyUser(String username, DummyRole[] roles, String password) {
+        this.username = username;
+        this.roles = roles;
+        this.password = password;
     }
 
-    public void getRoles() {
-        this.r.getRoles();
-    }
-    public int getID() {
-        return roleID;
+    //public void passwordCheck(DummyUser users) {
+
+    //methods go here
+    @Override
+    public String getUsername() {
+        return username;
+    } //returns username
+
+    //returns roles
+    @Override
+    public DummyRole[] getRoles() {
+        return roles;
     }
 
-    public void setID(int ID) {
-        this.roleID = ID;
+    @Override
+    public String getPassword() { //returns password
+        return password;
     }
 }
