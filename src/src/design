@@ -1,7 +1,8 @@
 classDiagram
-
-    Role <|--DummyRole
-    User <|-- DummyUser
+        Role *-- User: is-a
+        User *-- Role: is-a
+        Role <|--DummyRole: implements
+        User <|-- DummyUser: implements
     DummyUser : -String userName
     DummyUser : -DummyUser[] roles
     DummyUser : -String password
