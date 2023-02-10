@@ -1,0 +1,67 @@
+classDiagram
+        Role *-- User: is-a
+        User *-- Role: is-a
+        Role <|--DummyRole: implements
+        User <|-- DummyUser: implements
+    DummyUser : -String userName
+    DummyUser : -DummyUser[] roles
+    DummyUser : -String password
+    DummyUser: +DummyUser(String name, DummyUser[] roles, String password)
+    DummyUser: +getUsername()
+    DummyUser: +getRoles()
+    DummyUser: +getPassword()
+
+    class Role{
+        <<interface>>
+      +getRoleName(): String
+      +getOperations(): ClubOperations[]
+    }
+
+    class User{
+      <<interface>>
+      +getUsername(): String
+      +getRoles(): DummyRole[]
+      +getPassword(): String
+    }
+
+    class DummyRole{
+        <<enumeration>>
+      PATRON
+      BARTENDER
+      TALENT
+      SECURITY
+      ADMINISTRATOR
+      MANAGER
+      -String roleName
+      -ClubOperation[] operations
+      +DummyRole(String roleName, ClubOperation[] operations)
+      +getRoleName(): String
+      +getOperations(): ClubOperation[]
+    }
+
+    class Main {
+        +main(args: String[])
+    }
+
+    class ClubOperation{
+        <<enumeration>>
+        +accessEstablishment
+        +openTab
+        +serveDrinks
+        +rejectEntry
+        +accessStage
+        +accessGreenRoom
+        +enforceRules
+        +manageRoles
+        +manageOperations
+        +manageEmployees
+        +reviewDataDashboard
+    }
+
+    class Login{
+        +login()
+        +authenticate(String username, String password, DummyUser[] users): DummyUser
+        +printUserRole(Dummyuser user)
+    }
+
+
