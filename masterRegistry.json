@@ -4,34 +4,39 @@
     "age" : 38,
     "password" : "Password123",
     "isAdmin" : true,
-    "userName" : "jeffro123"
+    "userName" : "jeffro123",
+    "email" : null
   },
   "fr3d" : {
     "name" : "fred flintstone",
     "age" : 55,
     "password" : "yabadabadoo",
     "isAdmin" : false,
-    "userName" : "fr3d"
+    "userName" : "fr3d",
+    "email" : null
   },
   "Ali" : {
     "name" : "Ali Doggo Jr III Esquire",
     "age" : 2,
     "password" : "kibblesnbits",
     "isAdmin" : false,
-    "userName" : "Ali"
+    "userName" : "Ali",
+    "email" : null
   },
   "thatonedude" : {
     "name" : "marlin brando",
     "age" : 99,
     "password" : "secret",
     "isAdmin" : false,
-    "userName" : "thatonedude"
+    "userName" : "thatonedude",
+    "email" : null
   },
   "HomerJ" : {
     "name" : "Homer J Simpson",
     "age" : 45,
     "password" : "Password123",
     "isAdmin" : false,
-    "userName" : "HomerJ"
+    "userName" : "HomerJ",
+    "email" : null
   }
 }

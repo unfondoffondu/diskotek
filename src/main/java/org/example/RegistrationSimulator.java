@@ -1,5 +1,5 @@
 /**
- * RegistrationSimulator is a brief demonstration on how the User objects are built from and stored using JSON
+ * RegistrationSimulator is a brief demonstration on how the RegSimUserData objects are built from and stored using JSON
  * Author: Jeff Schowe
  */
 package org.example;
@@ -40,7 +40,7 @@ public class RegistrationSimulator {
         /**
          *Handles all the input from new user and calls the instantiateUser method
          */
-        User cUser = new User();
+        RegSimUserData cRegSimUserData = new RegSimUserData();
         String finalPW = null;
         System.out.println("Enter password for " + uName);
         String pw1 = scanner.nextLine();
@@ -53,20 +53,20 @@ public class RegistrationSimulator {
         String userEmail = scanner.nextLine();
         System.out.println("Enter your Age");
         int age = scanner.nextInt();
-        System.out.println("Registration complete");
-        instantiateUser(uMap, cUser, name, age, finalPW, uName);
-        greetUser(uMap, cMapper);
+        instantiateUser(uMap, cRegSimUserData, name, age, finalPW, uName, userEmail);
+        System.exit(0);
         }
-    private static void instantiateUser(Map uMap, User userToInstantiate, String n, int a, String p, String uname) {
+    private static void instantiateUser(Map uMap, RegSimUserData regSimUserDataToInstantiate, String n, int a, String p, String uname, String email) {
         /**
          * This actually builds the new user and calls Proto.addUserToMap()
          */
-        userToInstantiate.userName = uname;
-        userToInstantiate.password = p;
-        userToInstantiate.isAdmin = false;
-        userToInstantiate.name = n;
-        userToInstantiate.age = a;
-        Proto.addUserToMap(uMap, userToInstantiate);
+        regSimUserDataToInstantiate.userName = uname;
+        regSimUserDataToInstantiate.password = p;
+        regSimUserDataToInstantiate.isAdmin = false;
+        regSimUserDataToInstantiate.name = n;
+        regSimUserDataToInstantiate.age = a;
+        regSimUserDataToInstantiate.email = email;
+        Proto.addUserToMap(uMap, regSimUserDataToInstantiate);
     }
     //TODO build registry for da club I ran out of time figuring out JSON, but the rest should be less painful. I need to
     // encapsulate the logic from here and from Main to reuse the IO and object notation.
@@ -80,11 +80,11 @@ public class RegistrationSimulator {
         String userNameInput = scanner.nextLine();
 
         try {
-            User user = (User) uMap.get(userNameInput);
+            RegSimUserData regSimUserData = (RegSimUserData) uMap.get(userNameInput);
             System.out.print("enter your password: ");
             String passwordInput = scanner.nextLine();
                                                                 //Program exits in this block after logging in. Further features will move this elsewhere.
-            if (Objects.equals(passwordInput, user.password)) {
+            if (Objects.equals(passwordInput, regSimUserData.password)) {
                 System.out.println("Welcome to DiskoTek, first round is on us! ***CLING***");
                 System.out.println("debug RegSim.loginPortal -- write to file (yes): ");
                 String write = scanner.nextLine();
@@ -95,7 +95,7 @@ public class RegistrationSimulator {
             }
         } catch (Exception e){
 
-            System.out.println("User name not found, please try again.");
+            System.out.println("RegSimUserData name not found, please try again.");
             loginPortal(uMap, cMapper);
         }
     }

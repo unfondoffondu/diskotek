@@ -28,15 +28,15 @@ public class Proto {
     public static void WriteJSON(ObjectMapper cMapper, Map cMap) throws IOException {
         new PrintWriter("masterRegistry.json").close();
         String json = cMapper.writerWithDefaultPrettyPrinter().writeValueAsString(cMap);
-        Path write = Files.write(new File("masterRegistry.json").toPath(), Collections.singletonList(json), APPEND);
+        Files.write(new File("masterRegistry.json").toPath(), Collections.singletonList(json), APPEND);
         System.exit(0);
     }
     public static String ReadMasterRegistryJSON() throws IOException {
         Path fileName = Path.of("masterRegistry.json");
         return Files.readString(fileName);
     }
-    protected static void addUserToMap(Map uMap, User cUser) {
-        uMap.put(cUser.userName, cUser);
+    protected static void addUserToMap(Map uMap, RegSimUserData cRegSimUserData) {
+        uMap.put(cRegSimUserData.userName, cRegSimUserData);
 
     }
 }
