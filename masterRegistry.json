@@ -38,5 +38,13 @@
     "isAdmin" : false,
     "userName" : "HomerJ",
     "email" : null
+  },
+  "testuser" : {
+    "name" : "test user",
+    "age" : 88,
+    "password" : "Password123",
+    "isAdmin" : false,
+    "userName" : "testuser",
+    "email" : "test@test.test"
   }
 }
