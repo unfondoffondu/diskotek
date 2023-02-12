@@ -4,6 +4,8 @@
  */
 package org.example;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
@@ -22,7 +24,8 @@ public class RegistrationSimulator {
     }
     private static void registerUser(Map uMap, ObjectMapper cMapper) {
 
-        System.out.println("Welcome to the DiskoTek Beta Registration!\nEnter your desired username: ");
+        System.out.println("Welcome to the DiskoTek Beta Registration");
+        System.out.println("Enter desired username");
         String desiredUsername = scanner.nextLine();
         try {
             if (uMap.get(desiredUsername) == null) {
@@ -36,7 +39,7 @@ public class RegistrationSimulator {
         }
     }
     //TODO error checking, hash passwords/research JWT
-    private static void buildUser(String uName, Map uMap, ObjectMapper cMapper) {
+    private static void buildUser(String uName, Map uMap, ObjectMapper cMapper) throws IOException {
         /**
          *Handles all the input from new user and calls the instantiateUser method
          */
@@ -54,8 +57,14 @@ public class RegistrationSimulator {
         System.out.println("Enter your Age");
         int age = scanner.nextInt();
         instantiateUser(uMap, cRegSimUserData, name, age, finalPW, uName, userEmail);
-        System.exit(0);
+        writeAndExit(uMap, cMapper);
         }
+
+    private static void writeAndExit(Map uMap, ObjectMapper cMapper) throws IOException {
+        Proto.WriteJSON(cMapper, uMap);
+        System.exit(17);
+    }
+
     private static void instantiateUser(Map uMap, RegSimUserData regSimUserDataToInstantiate, String n, int a, String p, String uname, String email) {
         /**
          * This actually builds the new user and calls Proto.addUserToMap()
@@ -86,8 +95,9 @@ public class RegistrationSimulator {
                                                                 //Program exits in this block after logging in. Further features will move this elsewhere.
             if (Objects.equals(passwordInput, regSimUserData.password)) {
                 System.out.println("Welcome to DiskoTek, first round is on us! ***CLING***");
-                System.out.println("debug RegSim.loginPortal -- write to file (yes): ");
-                String write = scanner.nextLine();
+                System.out.println("debug RegSim.loginPortal -- at this point, the userData from the map has been authenticated against the username and password" +
+                        " and their class fields are accessible to this client, proving that the registration process works. ");
+                String _string = scanner.nextLine();
                 Proto.WriteJSON(cMapper,uMap);
             } else  {
                 System.out.println("Invalid password or username not found.");
@@ -95,7 +105,7 @@ public class RegistrationSimulator {
             }
         } catch (Exception e){
 
-            System.out.println("RegSimUserData name not found, please try again.");
+            System.out.println("User name not found, please try again.");
             loginPortal(uMap, cMapper);
         }
     }

@@ -29,7 +29,7 @@ public class Proto {
         new PrintWriter("masterRegistry.json").close();
         String json = cMapper.writerWithDefaultPrettyPrinter().writeValueAsString(cMap);
         Files.write(new File("masterRegistry.json").toPath(), Collections.singletonList(json), APPEND);
-        System.exit(0);
+        System.out.println("Debug WriteJSON " + cMap.toString());
     }
     public static String ReadMasterRegistryJSON() throws IOException {
         Path fileName = Path.of("masterRegistry.json");
