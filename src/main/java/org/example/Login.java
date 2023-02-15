@@ -1,25 +1,33 @@
 package org.example;
+/*
+RBAC Design Pattern linking the RegSimUserData to Roles and Operations hard-coded users
+&& account login auth
+ */
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Login {
-    public static void login() {
+    public static void login(Map umap) {
         //Scanner initialized
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter your username: ");
         String username = sc.nextLine(); //saves what's entered to username String variable
         System.out.print("Enter your password: ");
         String password = sc.nextLine(); //saves what's entered to String password variable
-
         //DummyUser array holding all the hard-coded users at this point, with roles assigned, and passwords
-        DummyUser[] users = {
-                new DummyUser("Bertram Gilfoyle", new DummyRole[]{DummyRole.PATRON, DummyRole.BARTENDER}, "12kldasjhgflkhkldfn"),
-                new DummyUser("John Cena", new DummyRole[]{DummyRole.SECURITY}, "password"),
-                new DummyUser("Maurice Moss", new DummyRole[]{DummyRole.ADMINISTRATOR}, "0118 999 881 999 119 725 3"),
-                new DummyUser("Douglas Reynholm", new DummyRole[]{DummyRole.MANAGER}, "jen"),
-                new DummyUser("Tiesto", new DummyRole[]{DummyRole.TALENT}, "whoami?diplo?")};
-
+        try {
+            Map<String,UserData> uMap = Registry.getUserMap();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try {
             //check if username or password is empty
             if (username.isEmpty() || password.isEmpty()) {
@@ -27,9 +35,9 @@ public class Login {
                 System.out.println("Username and password cannot be empty");
                 return;
             }
-
             //try to authenticate the user with the given username and password
-            DummyUser user = authenticate(username, password, users);
+            UserData userData = (UserData) umap.get(username);
+            PatronUser user = (PatronUser) testAuthenticate(userData, password);
             //check if authentication was successful
             if (user != null) {
                 //if it was successful, call the method to print the user's role
@@ -42,14 +50,23 @@ public class Login {
             System.out.println("No input found, please try again.");
         }
     }
-
-    //Method to check login
-    private static DummyUser authenticate(String username, String password, DummyUser[] users) {
-        for (DummyUser user : users) {
-            if (user.getUsername().equals(username) && user.getPassword().equals((password))) {
-                return user;
-            }
+    //Added test auth method, the other one should work now as well, but leaving this one in place. These shouldn't need
+    //to change much.
+    private static DummyUser testAuthenticate(UserData user, String passwordInput) {
+        //this validates the password based on userdata objects stored and calls the userfactory to
+        if (Objects.equals(user.password, passwordInput)) {
+            return UserFactory.buildValidatedUser(user);
+        } else {
+            System.out.println("Username or password is incorrect");
+            return null;
         }
+    }
+    //Method to check login creds, calls UserFactory.build etc.
+    private static DummyUser authenticate(String username, String password, UserData uData) {
+        if (uData.userName.equals(username) && uData.password.equals((password))) {
+            return UserFactory.buildValidatedUser(uData);
+        }
+
         return null;
     }
 
@@ -63,4 +80,7 @@ public class Login {
             }
         }
     }
+    //added entry point for demonstration purposes
+
 }
+
