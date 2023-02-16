@@ -10,5 +10,6 @@ public enum ClubOperation {
         manageEmployees,
         reviewDataDashboard,
         accessStage,
-        accessGreenRoom
+        accessGreenRoom,
+        default
 }

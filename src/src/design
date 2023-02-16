@@ -61,7 +61,7 @@ classDiagram
     class Login{
         +login()
         +authenticate(String username, String password, DummyUser[] users): DummyUser
-        +printUserRole(Dummyuser user)
+        +printUserRole(Dummyuser regSimUserData)
     }
 
 

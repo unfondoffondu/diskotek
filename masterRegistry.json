@@ -1,37 +1,65 @@
 {
-  "jeffro123" : {
-    "name" : "jeffro",
+  "josh333" : {
+    "name" : "josh",
+    "age" : 21,
+    "password" : "Password123",
+    "isAdmin" : false,
+    "userName" : "josh333",
+    "email" : "joshy@josh.josh",
+    "roles" : [ "PATRON" ]
+  },
+  "phil123" : {
+    "name" : "phil onetwothree",
+    "age" : 123,
+    "password" : "12345678",
+    "isAdmin" : false,
+    "userName" : "phil123",
+    "email" : "phil123@askjeeves.com",
+    "roles" : [ "PATRON" ]
+  },
+  "GoldenMagikarp" : {
+    "name" : "nah bruh",
     "age" : 38,
-    "password" : "Password123",
+    "password" : "94ad3dec53ec9f95b113b8fa0096b43d",
     "isAdmin" : true,
-    "userName" : "jeffro123"
+    "userName" : "GoldenMagikarp",
+    "email" : "gmk@riseup.net",
+    "roles" : [ "PATRON" ]
   },
-  "fr3d" : {
-    "name" : "fred flintstone",
-    "age" : 55,
-    "password" : "yabadabadoo",
-    "isAdmin" : false,
-    "userName" : "fr3d"
-  },
-  "Ali" : {
-    "name" : "Ali Doggo Jr III Esquire",
-    "age" : 2,
-    "password" : "kibblesnbits",
-    "isAdmin" : false,
-    "userName" : "Ali"
-  },
-  "thatonedude" : {
-    "name" : "marlin brando",
-    "age" : 99,
-    "password" : "secret",
-    "isAdmin" : false,
-    "userName" : "thatonedude"
-  },
-  "HomerJ" : {
-    "name" : "Homer J Simpson",
-    "age" : 45,
+  "jimmy123" : {
+    "name" : "Jim Halpert",
+    "age" : 33,
     "password" : "Password123",
     "isAdmin" : false,
-    "userName" : "HomerJ"
+    "userName" : "jimmy123",
+    "email" : "j.Halpert@dundermifflin.com",
+    "roles" : [ "PATRON" ]
+  },
+  "partyanimal123" : {
+    "name" : "john schmaltz",
+    "age" : 25,
+    "password" : "",
+    "isAdmin" : false,
+    "userName" : "partyanimal123",
+    "email" : "partyanimal123@thebar.com",
+    "roles" : [ "PATRON" ]
+  },
+  "adsfafs" : {
+    "name" : "fdsaf  asf daasfd",
+    "age" : 354,
+    "password" : "Password123",
+    "isAdmin" : false,
+    "userName" : "adsfafs",
+    "email" : "fads@dsaffads.fdsa",
+    "roles" : [ "PATRON" ]
+  },
+  "fixedDoublePasswordScannerBug" : {
+    "name" : "jeffro mcgilliticutty",
+    "age" : 44,
+    "password" : "Password123",
+    "isAdmin" : false,
+    "userName" : "fixedDoublePasswordScannerBug",
+    "email" : "j@itstoolateforthis.com",
+    "roles" : [ "PATRON" ]
   }
 }

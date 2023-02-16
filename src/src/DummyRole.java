@@ -29,6 +29,9 @@ public enum DummyRole implements Role {
             ClubOperation.reviewDataDashboard,
             ClubOperation.accessEstablishment,
             ClubOperation.openTab});
+    DEFAULT("default test", new ClubOperation[] {
+        ClubOperation.
+
 
     //Fields that hold the roleName and the ClubOperations
     private final String roleName;
