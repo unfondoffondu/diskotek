@@ -1,4 +1,3 @@
-//enum for the list of roles implements the Role interface
 public enum DummyRole implements Role {
     //named constants defined with the roleName and the associated ClubOperations
     PATRON("patron", new ClubOperation[]{
@@ -28,15 +27,14 @@ public enum DummyRole implements Role {
             ClubOperation.manageEmployees,
             ClubOperation.reviewDataDashboard,
             ClubOperation.accessEstablishment,
-            ClubOperation.openTab});
-    DEFAULT("default test", new ClubOperation[] {
-        ClubOperation.
-
+            ClubOperation.openTab}),
+    DEFAULT_ROLE("default test", new ClubOperation[] {
+            ClubOperation.defaultOperation
+    });
 
     //Fields that hold the roleName and the ClubOperations
     private final String roleName;
     private final ClubOperation[] operations;
-
 
     //Constructor to initialize the roleName and operations variables
     DummyRole(String roleName, ClubOperation[] operations) {
