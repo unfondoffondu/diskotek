@@ -37,11 +37,16 @@ public class Login {
             }
             //try to authenticate the user with the given username and password
             UserData userData = (UserData) umap.get(username);
-            PatronUser user = (PatronUser) testAuthenticate(userData, password);
+            DummyUser user = testAuthenticate(userData, password);
             //check if authentication was successful
             if (user != null) {
                 //if it was successful, call the method to print the user's role
                 printUserRole(user);
+                try {
+                    user.loggedIn();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             } else {
                 //if authentication failed, print error messages
                 System.out.println("Invalid username or password. Please try again.");
@@ -55,18 +60,18 @@ public class Login {
     private static DummyUser testAuthenticate(UserData user, String passwordInput) {
         //this validates the password based on userdata objects stored and calls the userfactory to
         if (Objects.equals(user.password, passwordInput)) {
-            return UserFactory.buildValidatedUser(user);
+            DummyUser validatedUser = UserFactory.buildUser(user);
+            return validatedUser;
         } else {
             System.out.println("Username or password is incorrect");
             return null;
         }
     }
     //Method to check login creds, calls UserFactory.build etc.
-    private static DummyUser authenticate(String username, String password, UserData uData) {
+    private static DummyUser authenticate(UserData uData, String username, String password) {
         if (uData.userName.equals(username) && uData.password.equals((password))) {
             return UserFactory.buildValidatedUser(uData);
         }
-
         return null;
     }
 

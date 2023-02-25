@@ -16,8 +16,6 @@ import static java.nio.file.StandardOpenOption.APPEND;
 
 
 public class Registry {
-    public static final String red = "\u001B[31m";
-    public static final String resetColor = "\u001B[0m";
 
     //ugly string declaration The io and runtime exceptions follow around this method.
     static String json;
@@ -135,5 +133,14 @@ public class Registry {
                 return true;
             }
         } return false;
+    }
+    public static void writeToClubDB(TestClub club) throws IOException {
+        new PrintWriter("clubDB").close();
+        String json = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(club);
+        Files.write(new File("clubDB.json").toPath(), Collections.singletonList(json), APPEND);
+    }
+    public static String readFromClubDB() throws IOException {
+        Path fileName = Path.of("clubDB");
+        return Files.readString(fileName);
     }
 }
