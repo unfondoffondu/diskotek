@@ -39,4 +39,17 @@ public class UserFactory implements FactoryInterface {
     public DummyUser buildPatronUser(UserData uData) {
         return null;
     }
+
+
+    public static AdminUser buildAdminUser(UserData uData) {
+        return new AdminUser(uData);
+    }
+    public static DummyUser buildUser(UserData user) {
+        if (user.isAdmin) {
+            return buildAdminUser(user);
+        }
+        else {
+            return buildValidatedUser(user);
+        }
+    }
 }

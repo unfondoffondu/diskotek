@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Arrays;
+
 //intellij wants to change this class to a record which is way more concise for holding only data. Almost too concise.
 public abstract class DummyUser implements User{
     private final String username;
@@ -9,6 +11,18 @@ public abstract class DummyUser implements User{
     private final int age;
     private final String name;
     //private and final so the variables can't be changed
+
+    @Override
+    public String toString() {
+        return "DummyUser{" +
+                "username='" + username + '\'' +
+                ", roles=" + Arrays.toString(roles) +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
 
     //constructor
     public DummyUser(UserData userData) {

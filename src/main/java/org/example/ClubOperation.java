@@ -13,5 +13,4 @@ public enum ClubOperation {
         reviewDataDashboard,
         accessStage,
         accessGreenRoom,
-        defaultTest;
 }

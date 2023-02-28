@@ -57,9 +57,18 @@
     "name" : "jeffro mcgilliticutty",
     "age" : 44,
     "password" : "Password123",
-    "isAdmin" : false,
+    "isAdmin" : true,
     "userName" : "fixedDoublePasswordScannerBug",
     "email" : "j@itstoolateforthis.com",
+    "roles" : [ "PATRON" ]
+  },
+  "jeffro123" : {
+    "name" : "jeffro 123",
+    "age" : 38,
+    "password" : "Password123",
+    "isAdmin" : true,
+    "userName" : "jeffro123",
+    "email" : "jasdf@gmail.com",
     "roles" : [ "PATRON" ]
   }
 }
